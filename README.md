@@ -1,2 +1,1 @@
-# rubyanimate.github.io
-dumpster
+[Asset Shop](https://rubyanimate.github.io/assets/)
