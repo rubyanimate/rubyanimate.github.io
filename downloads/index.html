@@ -1,7 +1,81 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Download Center</title>
+    <style>
+        * {
+            font-family: Arial;
+        }
+        html {
+            background-color: azure;
+        }
+        .title, * {
+            color: black;
+        }
+        .item {
+            border-style: solid;
+            border-radius: 10px;
+            border-width: 2.5px;
+            text-align: center;
+            background-color: white;
+            padding-bottom: 10px;
+            margin-top: 10px;
+        }
+        .extra {
+            display: none;
+        }
+        .name {
+            height: auto;
+        }
+        .name:focus + .extra {
+            display: block;
+        }
+        .description a {
+            color: LinkText;
+        }
+        .download {
+            text-decoration: none;
+            border-style: solid;
+            border-radius: 50px;
+            border-color: LinkText;
+            background: LinkText;
+            color: white;
+            font-size: 100%;
+            background-size: 120%;
+        }
+        .download:hover {
+            color: white;
+        }
+    </style>
 </head>
+<body>
+    <div class="title">
+        <h2>Ruby's Download Center</h2>
+    </div>
+    <div class="main">
+        <div class="item enterlife" tabindex="0">
+            <h3 class="name enterlife" tabindex="0">Enter Life</h3>
+            <div class="extra enterlife">
+                <p class="description enterlife">Music made by <a href="https://suno.com">Suno AI</a></p>
+                <a class="download enterlife" tabindex="0" href="https://we.tl/t-UK1tNT3no6">Download</a>
+            </div>
+        </div>
+        <div class="item cwchar" tabindex="0">
+            <h3 class="name cwchar" tabindex="0">RubyAnimate's OC (CW)</h3>
+            <div class="extra cwchar">
+                <p class="description cwchar">Use me in your videos! (Requires Custom Assets: <input name='test' type='checkbox' checked="checked" style="pointer-events: none;"/>)</p>
+                <a class="download cwchar" download="ruby.xml" tabindex="0" href="https://file.garden/ZrJxE7GKwA4WPY7d/ruby.xml">Download</a>
+            </div>
+        </div>
+        <div class="item bfchar" tabindex="0">
+            <h3 class="name bfchar" tabindex="0">RubyAnimate's OC (BF)</h3>
+            <div class="extra bfchar">
+                <p class="description bfchar">Use me in your videos! (Requires Custom Assets: <input name='test' type='checkbox' checked="checked" style="pointer-events: none;"/>)<br><a download="rubybf.xml" href="https://rubyanimate.github.io/assets/">Get the assets here! (Tophat for Business Friendly)</a></p>
+                <a class="download bfchar" tabindex="0" href="https://file.garden/ZrJxE7GKwA4WPY7d/rubybf.xml">Download</a>
+            </div>
+        </div>
+    </div>
+
 <script>
     const items = document.querySelectorAll('.item');
 
@@ -9,114 +83,53 @@
         const nameElement = item.querySelector('.name');
         const extraElement = item.querySelector('.extra');
 
+        // Toggle the extra content when the name is clicked
         nameElement.addEventListener('click', (event) => {
+            // Prevent the click from bubbling up
             event.stopPropagation();
+            // Toggle the display of the extra content
             extraElement.style.display = extraElement.style.display === 'block' ? 'none' : 'block';
+            // Focus the name element
             nameElement.focus();
         });
 
+        // Allow clicking on the extra content without losing focus
         extraElement.addEventListener('click', (event) => {
-            event.stopPropagation();
+            event.stopPropagation(); // Prevent the click from bubbling up to the item
         });
     });
 
+    // Add a global click listener to handle item focus
     document.addEventListener('click', (event) => {
         items.forEach(item => {
             const nameElement = item.querySelector('.name');
             const extraElement = item.querySelector('.extra');
 
             if (event.target.closest('.item') !== item) {
-                extraElement.style.display = 'none';
-                nameElement.blur();
+                // If clicking outside the current item, hide extra content and blur the name
+                extraElement.style.display = 'none'; // Hide extra content
+                nameElement.blur(); // Remove focus from the name element
             } else {
+                // If clicking on the current item, focus the name element
                 nameElement.focus();
             }
         });
     });
 
+    // Ensure only one item can be focused at a time
     items.forEach(item => {
         item.addEventListener('click', () => {
             items.forEach(otherItem => {
                 if (otherItem !== item) {
                     const otherNameElement = otherItem.querySelector('.name');
                     const otherExtraElement = otherItem.querySelector('.extra');
-                    otherExtraElement.style.display = 'none';
-                    otherNameElement.blur();
+                    otherExtraElement.style.display = 'none'; // Hide extra content
+                    otherNameElement.blur(); // Remove focus from the other name element
                 }
             });
         });
     });
 </script>
-<style>
-	* {
-    font-family: Arial
-    }
-    html {
-        background-color: azure;
-    }
-    .title, * {
-        color: black
-    }
-    .item {
-        border-style: solid;
-        border-radius: 10px;
-        border-width: 2.5px;
-        text-align: center;
-        background-color: white;
-        padding-bottom: 10px;
-        margin-top: 10px;
-    }
-    .extra {
-        display: none;
-    }
-    .name {
-        height: auto;
-    }
-    .name:focus + .extra {
-        display: block;
-    }
-    .description a {
-    color: LinkText
-    }
-    .download {
-        text-decoration: none;
-        border-style: solid;
-        border-radius: 50px;
-        border-color: LinkText;
-        background: LinkText;
-        color: white;
-        font-size: 100%;
-        background-size: 120%;
-    }
-    .download:hover {
-        color:white;
-    }
-</style>
-<body>
-    <div class="title">
-        <h2>Ruby's Download Center</h2>
-    </div>
-    <div class="main">
-        <div class="item enterlife" tabindex="1">
-            <h3 class="name enterlife" tabindex="1">Enter Life</h3>
-            <div class="extra enterlife">
-                <p class="description enterlife">Music made by <a href="https://suno.com">Suno AI</a></p>
-                <a class="download enterlife"  tabindex="1" href="https://we.tl/t-UK1tNT3no6">Download</a>
-            </div>
-        </div>
-        <div class="item cwchar"  tabindex="1">
-            <h3 class="name cwchar" tabindex="1">RubyAnimate's OC (CW)</h3>
-            <div class="extra cwchar">
-                <p class="description cwchar">Use me in your videos! (Requires Custom Assets: <input name='test' type='checkbox' checked="checked" style="pointer-events: none;"/>)</p>
-                <a class="download cwchar" tabindex="1" href="https://file.garden/ZrJxE7GKwA4WPY7d/ruby.xml">Download</a>
-            </div>
-        </div>
-        <div class="item bfchar" tabindex="1">
-            <h3 class="name bfchar" tabindex="1">RubyAnimate's OC (BF)</h3>
-            <div class="extra bfchar">
-                <p class="description bfchar">Use me in your videos! (Requires Custom Assets: <input name='test' type='checkbox' checked="checked" style="pointer-events: none;"/>)<br><a href="https://rubyanimate.github.io/assets/">Get the assets here! (Tophat for Business Friendly)</a></p>
-                <a class="download bfchar" tabindex="1" href="https://file.garden/ZrJxE7GKwA4WPY7d/rubybf.xml">Download</a>
-            </div>
-        </div>
-    </div>
-</body>
+
+   </body>
+  </html>
