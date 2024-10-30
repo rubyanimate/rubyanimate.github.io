@@ -2,6 +2,51 @@
 <head>
     <title>Download Center</title>
 </head>
+<script>
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const nameElement = item.querySelector('.name');
+        const extraElement = item.querySelector('.extra');
+
+        nameElement.addEventListener('click', (event) => {
+            event.stopPropagation();
+            extraElement.style.display = extraElement.style.display === 'block' ? 'none' : 'block';
+            nameElement.focus();
+        });
+
+        extraElement.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        items.forEach(item => {
+            const nameElement = item.querySelector('.name');
+            const extraElement = item.querySelector('.extra');
+
+            if (event.target.closest('.item') !== item) {
+                extraElement.style.display = 'none';
+                nameElement.blur();
+            } else {
+                nameElement.focus();
+            }
+        });
+    });
+
+    items.forEach(item => {
+        item.addEventListener('click', () => {
+            items.forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherNameElement = otherItem.querySelector('.name');
+                    const otherExtraElement = otherItem.querySelector('.extra');
+                    otherExtraElement.style.display = 'none';
+                    otherNameElement.blur();
+                }
+            });
+        });
+    });
+</script>
 <style>
 	* {
     font-family: Arial
@@ -52,25 +97,25 @@
         <h2>Ruby's Download Center</h2>
     </div>
     <div class="main">
-        <div class="item enterlife">
+        <div class="item enterlife" tabindex="1">
             <h3 class="name enterlife" tabindex="1">Enter Life</h3>
             <div class="extra enterlife">
                 <p class="description enterlife">Music made by <a href="https://suno.com">Suno AI</a></p>
-                <a class="download enterlife" href="https://we.tl/t-UK1tNT3no6">Download</a>
+                <a class="download enterlife"  tabindex="1" href="https://we.tl/t-UK1tNT3no6">Download</a>
             </div>
         </div>
-        <div class="item cwchar">
+        <div class="item cwchar"  tabindex="1">
             <h3 class="name cwchar" tabindex="1">RubyAnimate's OC (CW)</h3>
             <div class="extra cwchar">
                 <p class="description cwchar">Use me in your videos! (Requires Custom Assets: <input name='test' type='checkbox' checked="checked" style="pointer-events: none;"/>)</p>
-                <a class="download cwchar" href="https://file.garden/ZrJxE7GKwA4WPY7d/ruby.xml">Download</a>
+                <a class="download cwchar" tabindex="1" href="https://file.garden/ZrJxE7GKwA4WPY7d/ruby.xml">Download</a>
             </div>
         </div>
-        <div class="item bfchar">
+        <div class="item bfchar" tabindex="1">
             <h3 class="name bfchar" tabindex="1">RubyAnimate's OC (BF)</h3>
             <div class="extra bfchar">
                 <p class="description bfchar">Use me in your videos! (Requires Custom Assets: <input name='test' type='checkbox' checked="checked" style="pointer-events: none;"/>)<br><a href="https://rubyanimate.github.io/assets/">Get the assets here! (Tophat for Business Friendly)</a></p>
-                <a class="download bfchar" href="https://file.garden/ZrJxE7GKwA4WPY7d/rubybf.xml">Download</a>
+                <a class="download bfchar" tabindex="1" href="https://file.garden/ZrJxE7GKwA4WPY7d/rubybf.xml">Download</a>
             </div>
         </div>
     </div>
